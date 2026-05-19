@@ -1,0 +1,99 @@
+version: "3.9"
+
+# ─────────────────────────────────────────────────────────────
+#  DVP Backend — Local Development Infrastructure
+# ─────────────────────────────────────────────────────────────
+
+services:
+
+  # ── MongoDB ─────────────────────────────────────────────────
+  mongodb:
+    image: mongo:7
+    container_name: dvp-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - dvp-network
+
+  # ── Mongo Express (Web UI) ──────────────────────────────────
+  mongo-express:
+    image: mongo-express:latest
+    container_name: dvp-mongo-express
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://admin:password@mongodb:27017/?authSource=admin
+      ME_CONFIG_BASICAUTH_USERNAME: admin
+      ME_CONFIG_BASICAUTH_PASSWORD: password
+    depends_on:
+      - mongodb
+    networks:
+      - dvp-network
+
+  # ── Redis ────────────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    container_name: dvp-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - dvp-network
+
+  # ── RabbitMQ ─────────────────────────────────────────────────
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: dvp-rabbitmq
+    restart: unless-stopped
+    ports:
+      - "5672:5672"       # AMQP protocol
+      - "15672:15672"     # Management UI → http://localhost:15672
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: password
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    networks:
+      - dvp-network
+
+  # ── Auth Service ─────────────────────────────────────────────
+  auth-service:
+    build: ./services/auth-service
+    container_name: dvp-auth
+    restart: unless-stopped
+    ports:
+      - "3007:3007"
+    env_file:
+      - ./services/auth-service/.env
+    environment:
+      - MONGO_URI=mongodb://admin:password@mongodb:27017/dvp_auth?authSource=admin
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - mongodb
+      - redis
+    networks:
+      - dvp-network
+
+# ─────────────────────────────────────────────────────────────
+#  Volumes
+# ─────────────────────────────────────────────────────────────
+volumes:
+  mongo-data:
+  redis-data:
+  rabbitmq-data:
+
+# ─────────────────────────────────────────────────────────────
+#  Networks
+# ─────────────────────────────────────────────────────────────
+networks:
+  dvp-network:
+    driver: bridge
