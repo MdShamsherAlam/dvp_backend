@@ -1,92 +1,101 @@
-Distributed Video Processing Platform
-Vision
+# Distributed Video Processing Platform
 
-Ye project ek production-grade distributed backend system hoga jisme:
+## 🎯 Vision
 
-Event-driven architecture
-Microservices
-Dockerized deployment
-AWS infrastructure
-Async communication
-Distributed workflows
-Resilience patterns
-Observability
+This project is a **production-grade distributed backend system** that implements the following core concepts within a single, cohesive platform:
 
-sab ek hi project me implement honge.
+- Event-Driven Architecture
+- Microservices Design
+- Dockerized Deployment
+- AWS Cloud Infrastructure
+- Asynchronous Communication
+- Distributed Workflows
+- Resilience Patterns
+- Observability & Monitoring
 
-Ye normal CRUD project nahi hoga.
+> **This is not a typical CRUD application.** It simulates the backend processing systems used by platforms like **Amazon Prime Video**, **YouTube**, **Netflix**, **Hotstar**, and **Vimeo** — in a simplified yet architecturally accurate form.
 
-Ye project Amazon Prime Video, YouTube, Netflix, Hotstar, Vimeo jaise platforms ke backend processing systems ke concepts ko simplified form me simulate karega.
+---
 
-Project Goal
+## 🚀 Project Goal
 
-User ek video upload karega.
+A user uploads a video, and the system **automatically** orchestrates the following pipeline:
 
-System automatically:
+1. Upload the video to cloud storage
+2. Persist metadata to the database
+3. Publish domain events
+4. Transcode the video into multiple resolutions
+5. Generate thumbnails
+6. Run content moderation
+7. Send user notifications
+8. Update analytics dashboards
+9. Maintain structured logs and distributed traces
 
-Video upload karega
-Metadata save karega
-Event publish karega
-Video transcode karega
-Thumbnail generate karega
-Moderation run karega
-Notification bhejega
-Analytics update karega
-Logs aur traces maintain karega
+The entire workflow is **asynchronous and distributed** across independently deployable services.
 
-Ye pura workflow asynchronous aur distributed hoga.
+---
 
-What You Will Learn
-Distributed Systems
-Event-driven architecture
-Async workflows
-Distributed transactions
-Eventual consistency
-Saga Pattern
-CQRS
-Transactional Outbox Pattern
-Retry mechanisms
-Dead-letter queues
-Idempotency
-Correlation IDs
-Distributed tracing
-DevOps & Infra
-Docker
-Docker Compose
-Container networking
-Reverse proxy
-AWS deployment
-ECS deployment
-CI/CD basics
-Monitoring
-Logging
-Backend Engineering
-Node.js microservices
-Express.js
-TypeScript
-Worker architecture
-Queue processing
-Message brokers
-API Gateway
-Service communication
-AWS Services
-Service	Purpose
-EC2	Initial deployment
-ECS	Container orchestration
-S3	Video storage
-SQS	Queue system
-EventBridge	Event bus
-Lambda	Async jobs
-CloudWatch	Logs & monitoring
-IAM	Access control
-API Gateway	Entry point
-ECR	Docker image registry
-Final Architecture
+## 📚 What You Will Learn
+
+### Distributed Systems
+
+- Event-Driven Architecture
+- Asynchronous Workflows
+- Distributed Transactions
+- Eventual Consistency
+- Saga Pattern
+- CQRS (Command Query Responsibility Segregation)
+- Transactional Outbox Pattern
+- Retry Mechanisms & Exponential Backoff
+- Dead-Letter Queues (DLQ)
+- Idempotency
+- Correlation IDs & Distributed Tracing
+
+### DevOps & Infrastructure
+
+- Docker & Docker Compose
+- Container Networking
+- Reverse Proxy (Nginx)
+- AWS Deployment (EC2, ECS)
+- CI/CD Fundamentals
+- Monitoring & Centralized Logging
+
+### Backend Engineering
+
+- Node.js Microservices
+- Express.js & TypeScript
+- Worker Architecture
+- Queue Processing & Message Brokers
+- API Gateway Design
+- Inter-Service Communication
+
+---
+
+## ☁️ AWS Services Overview
+
+| Service        | Purpose                  |
+|----------------|--------------------------|
+| EC2            | Initial deployment       |
+| ECS            | Container orchestration  |
+| S3             | Video object storage     |
+| SQS            | Message queue system     |
+| EventBridge    | Event bus                |
+| Lambda         | Serverless async jobs    |
+| CloudWatch     | Logging & monitoring     |
+| IAM            | Access control & roles   |
+| API Gateway    | Centralized entry point  |
+| ECR            | Docker image registry    |
+
+---
+
+## 🏗️ Final Architecture
+
+```
                         Client
                            ↓
                      API Gateway
                            ↓
-                 Upload Service
+                  Upload Service
                            ↓
                           S3
                            ↓
@@ -100,160 +109,205 @@ Transcoding Service                   Thumbnail Service
 Moderation Service                    Subtitle Service
  ↓                                             ↓
 Notification Service                  Analytics Service
-Why This Project Is Strong
+```
 
-Most backend developers:
+---
 
-only build CRUD APIs
-tightly coupled services
-synchronous systems
+## 💡 Why This Project Stands Out
 
-This project demonstrates:
+Most backend developers build:
 
-distributed architecture
-async communication
-production-like workflows
-resilience engineering
-scalable processing pipelines
+- Simple CRUD APIs
+- Tightly coupled services
+- Synchronous, monolithic systems
 
-Interviewers generally look for these concepts in senior backend roles.
+**This project demonstrates:**
 
-Tech Stack
-Backend
-Node.js
-Express.js
-TypeScript
-Database
-Primary Database
-MongoDB
-Optional CQRS Read Model
-DynamoDB
-Redis
-Messaging System
-Start With
-RabbitMQ
-Later Upgrade To
-Kafka
-Infra
-Docker
-Docker Compose
-Nginx
-Monitoring
-Winston / Pino
-CloudWatch
-Correlation IDs
-Distributed tracing
-Authentication
-JWT
-API Gateway auth
-Rate limiting
-Folder Structure
+- Distributed, loosely coupled architecture
+- Asynchronous inter-service communication
+- Production-like processing workflows
+- Resilience engineering (retries, DLQ, circuit breaking)
+- Horizontally scalable processing pipelines
+
+> These are the concepts interviewers look for in **senior and staff-level backend engineering roles**.
+
+---
+
+## 🛠️ Tech Stack
+
+### Backend
+
+| Technology   | Purpose                    |
+|--------------|----------------------------|
+| Node.js      | Runtime environment        |
+| Express.js   | HTTP framework             |
+| TypeScript   | Type-safe development      |
+
+### Database
+
+| Technology   | Purpose                    |
+|--------------|----------------------------|
+| MongoDB      | Primary data store         |
+| DynamoDB     | Optional CQRS read model   |
+| Redis        | Caching & session store    |
+
+### Messaging
+
+| Technology   | Purpose                    |
+|--------------|----------------------------|
+| RabbitMQ     | Initial message broker     |
+| Kafka        | Production-grade upgrade   |
+
+### Infrastructure
+
+| Technology   | Purpose                    |
+|--------------|----------------------------|
+| Docker       | Containerization           |
+| Docker Compose | Multi-container orchestration |
+| Nginx        | Reverse proxy & load balancing |
+
+### Monitoring & Observability
+
+| Technology        | Purpose                    |
+|-------------------|----------------------------|
+| Winston / Pino    | Structured logging         |
+| CloudWatch        | Cloud-native monitoring    |
+| Correlation IDs   | Request tracing            |
+| Distributed Tracing | End-to-end observability |
+
+### Authentication & Security
+
+| Technology     | Purpose                    |
+|----------------|----------------------------|
+| JWT            | Token-based authentication |
+| API Gateway Auth | Centralized auth layer   |
+| Rate Limiting  | Abuse prevention           |
+
+---
+
+## 📁 Project Structure
+
+```
 video-platform/
 │
 ├── services/
-│   ├── api-gateway/
-│   ├── upload-service/
-│   ├── transcoding-service/
-│   ├── thumbnail-service/
-│   ├── moderation-service/
-│   ├── notification-service/
-│   ├── analytics-service/
-│   └── auth-service/
+│   ├── api-gateway/           # Centralized routing & auth
+│   ├── upload-service/        # Video upload & S3 integration
+│   ├── transcoding-service/   # Video format conversion
+│   ├── thumbnail-service/     # Thumbnail generation
+│   ├── moderation-service/    # Content moderation
+│   ├── notification-service/  # Email & push notifications
+│   ├── analytics-service/     # Event analytics & dashboards
+│   └── auth-service/          # Authentication & authorization
 │
 ├── shared/
-│   ├── logger/
-│   ├── event-schema/
-│   ├── utils/
-│   ├── constants/
-│   └── middleware/
+│   ├── logger/                # Centralized logging utilities
+│   ├── event-schema/          # Shared event contracts
+│   ├── utils/                 # Common utility functions
+│   ├── constants/             # Shared constants & enums
+│   └── middleware/            # Shared middleware
 │
 ├── infra/
-│   ├── docker/
-│   ├── nginx/
-│   ├── monitoring/
-│   └── aws/
+│   ├── docker/                # Dockerfiles per service
+│   ├── nginx/                 # Nginx configuration
+│   ├── monitoring/            # Monitoring stack configs
+│   └── aws/                   # AWS infrastructure (IaC)
 │
-├── scripts/
-│
-├── docs/
-│
-├── docker-compose.yml
-│
-└── README.md
-Core Services
-1. API Gateway
+├── scripts/                   # Build, deploy & utility scripts
+├── docs/                      # Architecture & API documentation
+├── docker-compose.yml         # Local orchestration
+└── README.md                  # Project overview
+```
 
-Responsibilities:
+---
 
-authentication
-request routing
-rate limiting
-logging
-request tracing
-centralized entry point
+## ⚙️ Core Services
 
-Future:
+### 1. API Gateway
 
-BFF layer
-caching
-aggregation
-2. Upload Service
+**Responsibilities:**
+- Authentication & authorization
+- Request routing to downstream services
+- Rate limiting & throttling
+- Structured request logging
+- Request tracing via correlation IDs
+- Centralized entry point for all clients
 
-Responsibilities:
+**Future Enhancements:**
+- Backend-for-Frontend (BFF) layer
+- Response caching
+- Response aggregation
 
-receive upload
-save metadata
-upload to S3
-publish VIDEO_UPLOADED event
-3. Transcoding Service
+---
 
-Responsibilities:
+### 2. Upload Service
 
-consume VIDEO_UPLOADED event
-convert resolutions
-optimize videos
-publish VIDEO_TRANSCODED event
+**Responsibilities:**
+- Receive video upload via multipart request
+- Persist video metadata to the database
+- Upload raw video file to Amazon S3
+- Publish `VIDEO_UPLOADED` domain event
 
-Uses:
+---
 
-FFmpeg
-4. Thumbnail Service
+### 3. Transcoding Service
 
-Responsibilities:
+**Responsibilities:**
+- Consume `VIDEO_UPLOADED` events from the message queue
+- Convert videos to multiple resolutions (e.g., 360p, 720p, 1080p)
+- Optimize video encoding for streaming
+- Publish `VIDEO_TRANSCODED` event upon completion
 
-generate thumbnails
-publish THUMBNAIL_GENERATED event
-5. Moderation Service
+**Tools:** FFmpeg
 
-Responsibilities:
+---
 
-content moderation
-detect invalid content
-approve/reject videos
+### 4. Thumbnail Service
 
-Publishes:
+**Responsibilities:**
+- Consume transcoding events
+- Extract and generate video thumbnails
+- Publish `THUMBNAIL_GENERATED` event
 
-VIDEO_APPROVED
-VIDEO_REJECTED
-6. Notification Service
+---
 
-Responsibilities:
+### 5. Moderation Service
 
-send emails
-websocket notifications
-consume workflow events
-7. Analytics Service
+**Responsibilities:**
+- Perform automated content moderation
+- Detect and flag invalid or inappropriate content
+- Approve or reject videos based on moderation rules
 
-Responsibilities:
+**Events Published:**
+- `VIDEO_APPROVED`
+- `VIDEO_REJECTED`
 
-consume all events
-build read models
-processing analytics
-dashboards
+---
 
-This service demonstrates CQRS.
+### 6. Notification Service
 
-Event-Driven Workflow
+**Responsibilities:**
+- Send email notifications to users
+- Deliver real-time WebSocket notifications
+- Consume relevant workflow events and trigger notifications accordingly
+
+---
+
+### 7. Analytics Service
+
+**Responsibilities:**
+- Consume all domain events across services
+- Build and maintain read-optimized models
+- Process and aggregate analytics data
+- Power dashboards and reporting views
+
+> This service demonstrates the **CQRS pattern** by maintaining a separate read model.
+
+---
+
+## 🔄 Event-Driven Workflow
+
+```
 VIDEO_UPLOADED
       ↓
 VIDEO_TRANSCODING_STARTED
@@ -265,341 +319,263 @@ THUMBNAIL_GENERATED
 VIDEO_MODERATION_COMPLETED
       ↓
 VIDEO_PUBLISHED
-Why Event-Driven Architecture?
+```
 
-Bad architecture:
+### Why Event-Driven Architecture?
 
-Service A calls Service B calls Service C
+**❌ Anti-Pattern (Synchronous Chaining):**
 
-Problems:
+```
+Service A → calls Service B → calls Service C
+```
 
-tight coupling
-failures cascade
-scaling difficult
-hard observability
+**Problems:**
+- Tight coupling between services
+- Cascading failures across the chain
+- Difficult to scale independently
+- Poor observability
 
-Good architecture:
+**✅ Event-Driven Approach:**
 
-Services publish events
-Other services react independently
+```
+Services publish events → Other services react independently
+```
 
-Benefits:
+**Benefits:**
+- Horizontal scalability
+- Fault isolation & resilience
+- Loose coupling between services
+- Asynchronous, non-blocking processing
 
-scalability
-resilience
-loose coupling
-async processing
-Distributed Systems Concepts Implemented
-1. Saga Pattern
+---
 
-Workflow:
+## 🧩 Distributed Systems Concepts Implemented
 
-Upload Video
-↓
-Transcode
-↓
-Moderate
-↓
-Publish
+### 1. Saga Pattern
 
-If moderation fails:
+Orchestrates a distributed transaction across multiple services:
 
-Delete transcoded assets
-Rollback metadata
-Cancel publish
+```
+Upload Video → Transcode → Moderate → Publish
+```
 
-This simulates distributed transactions.
+**Compensating Actions (on failure):**
+- Delete transcoded assets from storage
+- Rollback metadata changes in the database
+- Cancel the publish operation
 
-2. CQRS
+> This simulates distributed transactions without two-phase commit.
 
-Separate:
+---
 
-Write Model
-upload workflow
-metadata updates
-Read Model
-analytics
-dashboards
-reports
-3. Transactional Outbox Pattern
+### 2. CQRS (Command Query Responsibility Segregation)
 
-Problem:
+| Model        | Responsibility                          |
+|--------------|------------------------------------------|
+| **Write Model** | Upload workflow, metadata updates     |
+| **Read Model**  | Analytics, dashboards, reporting views |
 
-DB updated
-Event publish failed
+---
 
-System inconsistent.
+### 3. Transactional Outbox Pattern
 
-Solution:
+**Problem:**
+Database is updated successfully, but the event publish to the message broker fails — resulting in data inconsistency.
 
-Write event into outbox collection
-Background worker publishes reliably
-4. Idempotency
+**Solution:**
+1. Write the event into an `outbox` collection within the same database transaction.
+2. A background worker polls the outbox and publishes events reliably.
 
-Duplicate events may arrive.
+---
 
-Example:
+### 4. Idempotency
 
-VIDEO_TRANSCODED received twice
+Duplicate events may arrive due to network retries or broker redelivery (e.g., `VIDEO_TRANSCODED` received twice). The system ensures that **duplicate processing is prevented** using idempotency keys.
 
-System should avoid duplicate processing.
+---
 
-5. Retry With Exponential Backoff
+### 5. Retry with Exponential Backoff
 
-Retry intervals:
+Failed operations are retried with progressively increasing intervals:
 
-1 sec
-2 sec
-4 sec
-8 sec
-6. Dead Letter Queue (DLQ)
+| Attempt | Delay   |
+|---------|---------|
+| 1       | 1 sec   |
+| 2       | 2 sec   |
+| 3       | 4 sec   |
+| 4       | 8 sec   |
 
-Failed events move into:
+---
 
-DLQ
+### 6. Dead-Letter Queue (DLQ)
 
-For later inspection and replay.
+Events that fail after all retry attempts are routed to a **Dead-Letter Queue** for:
 
-7. Correlation IDs
+- Manual inspection
+- Debugging & root cause analysis
+- Event replay after fix deployment
 
-Track one request across multiple services.
+---
 
-Example:
+### 7. Correlation IDs
 
-upload-service
-↓
-transcoding-service
-↓
-notification-service
+Track a single user request as it flows across multiple services:
 
-All logs share same correlation ID.
+```
+upload-service → transcoding-service → notification-service
+```
 
-Docker Architecture
+All log entries share the **same correlation ID**, enabling end-to-end distributed tracing.
 
-Each service runs independently.
+---
 
-1 service = 1 container
-Docker Compose
+## 🐳 Docker Architecture
 
-Runs:
+Each microservice runs as an **independent container** following the principle:
 
-MongoDB
-RabbitMQ
-all services
-Nginx
+> **1 Service = 1 Container**
 
-using single command.
+### Docker Compose
 
+A single command orchestrates the entire stack locally:
+
+```bash
 docker-compose up --build
-AWS Deployment Strategy
-Phase 1
-EC2 + Docker Compose
+```
 
-Simple learning deployment.
+**Services started:**
+- MongoDB
+- RabbitMQ
+- All application microservices
+- Nginx (reverse proxy)
 
-Client
-↓
-EC2
-↓
-Docker Compose
-Phase 2
-ECS Deployment
+---
 
-Production-like architecture.
+## ☁️ AWS Deployment Strategy
 
-API Gateway
-↓
-ECS Services
-↓
-SQS/EventBridge
-↓
-Workers
-Best Industry Structure To Follow
+### Phase 1 — EC2 + Docker Compose
 
-Real companies:
+A straightforward deployment for learning and initial validation:
 
-Amazon
-Netflix
-Uber
-Flipkart
-Swiggy
-Hotstar
+```
+Client → EC2 Instance → Docker Compose (all services)
+```
 
-generally use:
+### Phase 2 — ECS (Production-Grade)
 
-event-driven architecture
-async processing
-queues
-containerized deployment
-centralized observability
-API gateways
-distributed workflows
+A production-like architecture leveraging managed AWS services:
 
-This project follows the same concepts in simplified form.
+```
+Client → API Gateway → ECS Services → SQS/EventBridge → Workers
+```
 
-Recommended Architecture Repositories
-Microservices + Kafka + Docker
-node-microservices-kafka-postgres GitHub Repo
+---
 
-Use this repo for:
+## 🏢 Industry Alignment
 
-service structure
-Docker Compose ideas
-Kafka communication
-microservice separation
-Architecture Learning References
-Event Driven Microservices
-Microservices.io
-Docker
-Docker Official Docs
-AWS
-AWS Documentation
-RabbitMQ
-RabbitMQ Docs
-Kafka
-Apache Kafka Docs
-API Gateway
-KrakenD API Gateway
-Workflow Orchestration
-Netflix Conductor
-2 Week Learning Roadmap
-WEEK 1
-Day 1
-Learn
-Linux basics
-Docker basics
-containers
-images
-networking
-Build
-node + mongo container
-Day 2
-Learn
-RabbitMQ
-producers
-consumers
-queues
-exchanges
-Build
+Leading technology companies including **Amazon**, **Netflix**, **Uber**, **Flipkart**, **Swiggy**, and **Hotstar** employ:
 
-simple event publisher.
+- Event-driven architecture
+- Asynchronous processing pipelines
+- Message queues for decoupling
+- Containerized deployments
+- Centralized observability platforms
+- API gateways for traffic management
+- Distributed workflow orchestration
 
-Day 3
-Build Upload Service
+> **This project follows the same architectural principles in a simplified, educational form.**
 
-Features:
+---
 
-upload API
-S3 upload
-metadata save
-event publishing
-Day 4
-Build Transcoding Service
+## 📖 Recommended References
 
-Learn:
+### Architecture Repositories
 
-workers
-event consumers
-FFmpeg basics
-Day 5
-Build Thumbnail Service
+| Resource | Description |
+|----------|-------------|
+| [node-microservices-kafka-postgres](https://github.com/) | Reference for service structure, Docker Compose setup, Kafka communication, and microservice separation |
 
-Consume events and generate thumbnails.
+### Learning Resources
 
-Day 6
-Build Notification Service
+| Topic | Resource |
+|-------|----------|
+| Event-Driven Microservices | [Microservices.io](https://microservices.io/) |
+| Docker | [Docker Official Docs](https://docs.docker.com/) |
+| AWS | [AWS Documentation](https://docs.aws.amazon.com/) |
+| RabbitMQ | [RabbitMQ Docs](https://www.rabbitmq.com/documentation.html) |
+| Kafka | [Apache Kafka Docs](https://kafka.apache.org/documentation/) |
+| API Gateway | [KrakenD API Gateway](https://www.krakend.io/) |
+| Workflow Orchestration | [Netflix Conductor](https://conductor.netflix.com/) |
 
-Learn:
+---
 
-retries
-async communication
-DLQ
-Day 7
-Docker Compose Everything
+## 📅 2-Week Implementation Roadmap
 
-Run entire architecture locally.
+### Week 1 — Build Core Services
 
-WEEK 2
-Day 8
-Implement Saga Pattern
+| Day | Focus Area | Deliverables |
+|-----|-----------|--------------|
+| **Day 1** | Linux & Docker Fundamentals | Containers, images, networking; Run Node.js + MongoDB in Docker |
+| **Day 2** | Message Brokers (RabbitMQ) | Producers, consumers, queues, exchanges; Build a simple event publisher |
+| **Day 3** | Upload Service | Upload API, S3 integration, metadata persistence, `VIDEO_UPLOADED` event |
+| **Day 4** | Transcoding Service | Event consumers, worker architecture, FFmpeg basics |
+| **Day 5** | Thumbnail Service | Event-driven thumbnail generation pipeline |
+| **Day 6** | Notification Service | Retry logic, async communication patterns, DLQ handling |
+| **Day 7** | Docker Compose Integration | Orchestrate the full architecture locally with a single command |
 
-Distributed workflow handling.
+### Week 2 — Implement Advanced Patterns
 
-Day 9
-Implement Transactional Outbox
+| Day | Focus Area | Deliverables |
+|-----|-----------|--------------|
+| **Day 8** | Saga Pattern | Distributed workflow handling with compensating transactions |
+| **Day 9** | Transactional Outbox | Reliable event publishing with outbox collection + background worker |
+| **Day 10** | Idempotency | Duplicate event detection and prevention mechanisms |
+| **Day 11** | Retry & DLQ | Retry queues, exponential backoff, dead-letter queue processing |
+| **Day 12** | API Gateway | Authentication, rate limiting, request tracing |
+| **Day 13** | AWS Deployment | Deploy to EC2, ECS, S3, CloudWatch |
+| **Day 14** | Observability | Structured logging, distributed tracing, monitoring dashboards |
 
-Reliable event publishing.
+---
 
-Day 10
-Implement Idempotency
+## 📂 Recommended GitHub Structure
 
-Handle duplicate events.
+### Monorepo Approach
 
-Day 11
-Retry + DLQ
-
-Add:
-
-retry queues
-exponential backoff
-DLQ handling
-Day 12
-API Gateway
-
-Add:
-
-auth
-rate limiting
-request tracing
-Day 13
-AWS Deployment
-
-Deploy on:
-
-EC2
-ECS
-S3
-CloudWatch
-Day 14
-Observability
-
-Add:
-
-structured logging
-distributed tracing
-monitoring dashboards
-Recommended GitHub Structure
-Monorepo Style
+```
 video-platform/
 ├── services/
 ├── shared/
 ├── infra/
 ├── docs/
 └── scripts/
+```
 
-Why?
+**Why Monorepo?**
 
-Benefits:
+- Simplified dependency sharing across services
+- Centralized configuration management
+- Faster local development iteration
+- Streamlined Docker build process
+- Cleaner CI/CD pipeline configuration
 
-easier dependency sharing
-centralized configs
-faster local development
-easier Docker management
-cleaner CI/CD
+> Many modern engineering organizations (Google, Meta, Uber) adopt monorepo strategies for microservice projects.
 
-Many modern companies use monorepo approaches.
+---
 
-Important Engineering Principles
-1. Loose Coupling
+## 🎯 Core Engineering Principles
 
-Services should communicate via events.
+### 1. Loose Coupling
 
-Avoid direct dependency chains.
+Services communicate exclusively via events. Direct synchronous dependency chains are avoided to ensure independent deployability and scalability.
 
-2. Failure Isolation
+### 2. Failure Isolation
 
-One service failure should not crash entire system.
+A failure in one service must **not** cascade to other services. Each service is designed to degrade gracefully and recover independently.
 
-3. Scalability
+### 3. Horizontal Scalability
 
-Transcoding workers should scale
+Resource-intensive services (e.g., transcoding workers) can be **scaled independently** based on demand, without affecting other parts of the system.
+
+---
+
+> **Built with a focus on real-world distributed systems engineering.**
