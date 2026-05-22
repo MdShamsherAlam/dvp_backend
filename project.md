@@ -192,7 +192,7 @@ video-platform/
 │
 ├── services/
 │   ├── api-gateway/           # Centralized routing & auth
-│   ├── upload-service/        # Video upload & S3 integration
+│   ├── upload-service/        # Video upload, S3 multipart/presigned upload, and metadata persistence
 │   ├── transcoding-service/   # Video format conversion
 │   ├── thumbnail-service/     # Thumbnail generation
 │   ├── moderation-service/    # Content moderation
@@ -243,9 +243,9 @@ video-platform/
 ### 2. Upload Service
 
 **Responsibilities:**
-- Receive video upload via multipart request
+- Receive video upload requests and generate AWS S3 presigned upload URLs
 - Persist video metadata to the database
-- Upload raw video file to Amazon S3
+- Support large-file delivery with AWS S3 multipart upload and direct client-to-S3 transfer
 - Publish `VIDEO_UPLOADED` domain event
 
 ---

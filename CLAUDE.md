@@ -97,7 +97,7 @@ dvp_backend/
 │
 ├── services/
 │   ├── api-gateway/           # Centralized routing, auth, rate limiting
-│   ├── upload-service/        # Receives video, uploads to S3, publishes event
+│   ├── upload-service/        # Issues S3 upload URLs / multipart upload, persists metadata, publishes event
 │   ├── transcoding-service/   # Converts video to multiple resolutions (FFmpeg)
 │   ├── thumbnail-service/     # Generates thumbnails from video
 │   ├── moderation-service/    # Detects & flags inappropriate content
@@ -138,9 +138,9 @@ dvp_backend/
 - Correlation ID injection for tracing
 
 ### 2. `upload-service`
-- Accepts multipart video upload
+- Accepts video upload requests and issues AWS S3 presigned/multipart upload URLs for large files
 - Saves metadata to MongoDB
-- Uploads raw video to **AWS S3**
+- Handles S3 object persistence using direct client-to-S3 transfer for robustness
 - Publishes `VIDEO_UPLOADED` event to RabbitMQ/Kafka
 
 ### 3. `transcoding-service`
@@ -282,7 +282,10 @@ PORT=3001
 MONGO_URI=mongodb://localhost:27017/dvp
 RABBITMQ_URL=amqp://localhost:5672
 AWS_REGION=ap-south-1
+AWS_REGION=ap-south-1
 AWS_S3_BUCKET=dvp-videos
+AWS_ACCESS_KEY_ID=your_aws_access_key_id
+AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key
 JWT_SECRET=your_secret_here
 ```
 
@@ -311,7 +314,7 @@ services:
 
 ## ⚠️ Important Notes for AI
 
-1. **Always use TypeScript** — no plain `.js` files in service `src/`
+1. **Always use typescript** `
 2. **Event-driven first** — services communicate via events, NOT direct HTTP calls (except API Gateway → services)
 3. **Shared code** goes in `shared/` — never duplicate logger/middleware across services
 4. **Each service is independent** — has its own `package.json`, `Dockerfile`, and database connection
