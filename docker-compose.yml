@@ -67,7 +67,9 @@ services:
 
   # ── Auth Service ─────────────────────────────────────────────
   auth-service:
-    build: ./services/auth-service
+    build:
+      context: ./services/auth-service
+      dockerfile: ../../infra/docker/auth-service.Dockerfile
     container_name: dvp-auth
     restart: unless-stopped
     ports:
@@ -80,6 +82,23 @@ services:
     depends_on:
       - mongodb
       - redis
+    networks:
+      - dvp-network
+
+  # ── Upload Service ────────────────────────────────────────────
+  upload-service:
+    build:
+      context: ./services/upload-service
+      dockerfile: ../../infra/docker/upload-service.Dockerfile
+    container_name: dvp-upload
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    env_file:
+      - ./services/upload-service/.env
+    depends_on:
+      - mongodb
+      - rabbitmq
     networks:
       - dvp-network
 
